@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SchoolManagement.Models.Entity.Attendance>
+
+@{
+    ViewBag.Title = "Attendances";
+}
+
+<h2>Attendances</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes:new {@class = "btn btn-primary" } )
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendanceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendanceDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendanceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendanceDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AttendanceID },htmlAttributes:new {@class= "btn btn-warning btn-xs" }) |
+            @Html.ActionLink("Details", "Detail", new { id=item.AttendanceID }, htmlAttributes: new { @class = "btn btn-info btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AttendanceID }, htmlAttributes: new { @class = "btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>

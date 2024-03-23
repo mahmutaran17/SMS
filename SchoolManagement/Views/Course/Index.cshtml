@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SchoolManagement.Models.Entity.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseTime)
+        </th>
+        <th>
+            ProfessorName
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseDay)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseTime)
+        </td>
+        <td>
+            @{var name = item.Professor.FirstName + " " + item.Professor.LastName;}
+
+            @Html.DisplayFor(modelItem => name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseDay)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CourseID }, htmlAttributes: new { @class = "btn btn-warning btn-xs" }) |
+            @Html.ActionLink("Details", "Detail", new { id=item.CourseID }, htmlAttributes: new { @class = "btn btn-info btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseID }, htmlAttributes: new { @class = "btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>
